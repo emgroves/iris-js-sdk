@@ -3,6 +3,8 @@
 var currentBrowser;
 var browserVersion;
 
+var navigator = ( typeof(navigator) !== 'undefined' ) ? navigator : null;
+
 var RtcBrowserType = {
 
     RTC_BROWSER_CHROME: "chrome",
@@ -38,7 +40,7 @@ var RtcBrowserType = {
 }
 
 function detectChrome() {
-    if (navigator.webkitGetUserMedia) {
+    if (navigator && navigator.webkitGetUserMedia) {
         currentBrowser = RtcBrowserType.RTC_BROWSER_CHROME;
         var userAgent = navigator.userAgent.toLowerCase();
         // We can assume that user agent is chrome, because it's
@@ -51,17 +53,19 @@ function detectChrome() {
 }
 
 function detectOpera() {
-    var userAgent = navigator.userAgent;
-    if (userAgent.match(/Opera|OPR/)) {
-        currentBrowser = RtcBrowserType.RTC_BROWSER_OPERA;
-        var version = userAgent.match(/(Opera|OPR) ?\/?(\d+)\.?/)[2];
-        return version;
+    if (navigator) {
+        var userAgent = navigator.userAgent;
+        if (userAgent.match(/Opera|OPR/)) {
+            currentBrowser = RtcBrowserType.RTC_BROWSER_OPERA;
+            var version = userAgent.match(/(Opera|OPR) ?\/?(\d+)\.?/)[2];
+            return version;
+        }
+        return null;
     }
-    return null;
 }
 
 function detectFirefox() {
-    if (navigator.mozGetUserMedia) {
+    if (navigator && navigator.mozGetUserMedia) {
         currentBrowser = RtcBrowserType.RTC_BROWSER_FIREFOX;
         var version = parseInt(
             navigator.userAgent.match(/Firefox\/([0-9]+)\./)[1], 10);

@@ -10,7 +10,7 @@ var ws = require('ws')
 var logger = require('../../RtcLogger.js');
 
  // we ignore ws in the browser field of package.json
-var WebSocket = ws.Server ? ws : window.WebSocket
+var WebSocket = ws.Server ? ws : ( (typeof(window) !== 'undefined') ? window.WebSocket : null )
 
 var NS_FRAMING = 'urn:ietf:params:xml:ns:xmpp-framing'
 var NS_XMPP_TLS = 'urn:ietf:params:xml:ns:xmpp-tls'

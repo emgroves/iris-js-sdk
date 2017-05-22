@@ -35,11 +35,12 @@ rtcAdapterInit();
 
 
 function rtcAdapterInit() {
-    if (RtcBrowserType.isChrome()) {
+    var navigator = ( typeof(navigator) !== 'undefined' ) ? navigator : null;
+    if (navigator && RtcBrowserType.isChrome()) {
         RtcWebrtcAdapter.RTCPeerConnection = webkitRTCPeerConnection;
         RtcWebrtcAdapter.RTCIceCandidate = RTCIceCandidate;
         RtcWebrtcAdapter.getUserMedia = navigator.webkitGetUserMedia.bind(navigator);
-    } else if (RtcBrowserType.isFirefox()) {
+    } else if (navigator && RtcBrowserType.isFirefox()) {
         RtcWebrtcAdapter.RTCPeerConnection = mozRTCPeerConnection;
         RtcWebrtcAdapter.RTCIceCandidate = mozRTCIceCandidate;
         RtcWebrtcAdapter.getUserMedia = navigator.mozGetUserMedia.bind(navigator);
