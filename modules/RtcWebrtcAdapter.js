@@ -31,7 +31,7 @@ rtcAdapterInit();
 //  * @returns 
 //  * 
 // */
-// RtcWebrtcAdapter.getUserMedia = navigator.webkitGetUserMedia.bind(navigator);
+RtcWebrtcAdapter.getUserMedia = ( typeof(navigator) !== 'undefined' ) ? navigator.webkitGetUserMedia.bind(navigator) : null;
 
 
 function rtcAdapterInit() {
