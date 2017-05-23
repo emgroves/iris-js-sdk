@@ -15,7 +15,7 @@ rtcAdapterInit();
 //  * @returns 
 //  * 
 // */
-// RtcWebrtcAdapter.RTCPeerConnection = webkitRTCPeerConnection ;
+RtcWebrtcAdapter.RTCPeerConnection = webkitRTCPeerConnection ;
 
 // /** 
 //  * RTCIceCandidate definition
@@ -23,7 +23,7 @@ rtcAdapterInit();
 //  * @returns 
 //  * 
 // */
-// RtcWebrtcAdapter.RTCIceCandidate = RTCIceCandidate ;
+RtcWebrtcAdapter.RTCIceCandidate = RTCIceCandidate ;
 
 // /** 
 //  * getUserMedia definition
